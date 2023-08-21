@@ -5,7 +5,7 @@ Feature: Removing a Diary Event
 
 
   Scenario: Remove Screening Event
-    When I see event of "Mudit Maheshwari" created
+    When I see event of "Mudit Maheshwari" created on 10 August for "Screening Interview"
     Then I remove event "Mudit Maheshwari"
     
   

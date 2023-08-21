@@ -89,11 +89,14 @@ This would install all the dependencies needed for both executing the app as wel
 ### 6. Using the scripts defined in package.json to execute the tests
 ### FOR RUNNING THE TESTS:
 Keep the app open in 1 terminal
-``` npm run start ```
+` npm run start `
 
 In the second terminal, FOR
-### 7. Headless execution
+### 7. Headless execution in chrome browser
 #### `npm run e2e:test` 
 
-### 8. Headed execution
+### 8. Headed execution in chrome browser
 ### `npm run e2e:test:headed`
+
+### 9. To run in any other browser
+`npx cypress run --browser=<browsername>`
