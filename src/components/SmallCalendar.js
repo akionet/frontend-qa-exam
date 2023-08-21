@@ -42,13 +42,24 @@ export default function SmallCalendar() {
       return "";
     }
   }
+
+  // Generate an array of Day.js date objects for the current month
+  const daysInMonth = [];
+  const startOfMonth = dayjs(new Date(2023, currentMonthIdx, 1));
+  const endOfMonth = startOfMonth.endOf('month');
+
+  for (let day = startOfMonth; day <= endOfMonth; day = day.add(1, 'day')) {
+    daysInMonth.push(day);
+  }
+
+  // Calculate the number of rows needed based on the number of days in the month
+  const numRows = Math.ceil(daysInMonth.length / 7);
+
   return (
     <div className="mt-9">
       <header className="flex justify-between">
         <p className="text-gray-500 font-bold">
-          {dayjs(new Date(dayjs().year(), currentMonthIdx)).format(
-            "MMMM YYYY"
-          )}
+          {dayjs(new Date(2023, currentMonthIdx)).format("MMMM YYYY")}
         </p>
         <div>
           <button onClick={handlePrevMonth}>
@@ -63,27 +74,18 @@ export default function SmallCalendar() {
           </button>
         </div>
       </header>
-      <div className="grid grid-cols-7 grid-rows-6">
-        {currentMonth[0].map((day, i) => (
-          <span key={i} className="text-sm py-1 text-center">
-            {day.format("dd").charAt(0)}
-          </span>
-        ))}
-        {currentMonth.map((row, i) => (
-          <React.Fragment key={i}>
-            {row.map((day, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  setSmallCalendarMonth(currentMonthIdx);
-                  setDaySelected(day);
-                }}
-                className={`py-1 w-full ${getDayClass(day)}`}
-              >
-                <span className="text-sm">{day.format("D")}</span>
-              </button>
-            ))}
-          </React.Fragment>
+      <div className={`grid grid-cols-7 grid-rows-${numRows}`}>
+        {daysInMonth.map((day, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              setSmallCalendarMonth(currentMonthIdx);
+              setDaySelected(day);
+            }}
+            className={`py-1 w-full ${getDayClass(day)}`}
+          >
+            <span className="text-sm">{day.format("D")}</span>
+          </button>
         ))}
       </div>
     </div>
