@@ -87,10 +87,11 @@ This would install all the dependencies needed for both executing the app as wel
 ### `npm install cypress@12.14.0 --save-dev`
 
 ### 6. Using the scripts defined in package.json to execute the tests
-### Keep the app open in 1 terminal
+### FOR RUNNING THE TESTS:
+Keep the app open in 1 terminal
 ``` npm run start ```
 
-In the second terminal
+In the second terminal, FOR
 ### 7. Headless execution
 #### `npm run e2e:test` 
 
