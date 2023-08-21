@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+/* Add this CSS to your App.css file */
+
+.button-container {
+  margin-top: 20px;
+}
+
+.random-cat-fact-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #00008B;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  justify-content: right;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.random-cat-fact-button:hover {
+  background-color: #4fa3d1;
+}
+
+/* Add this CSS to your App.css file */
+
+/* Styling for the random cat fact text */
+.random-cat-fact {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #25cc28; /* Change the color as desired */
+  background-color: #f0f0f0; /* Change the background color as desired */
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
