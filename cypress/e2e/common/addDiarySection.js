@@ -8,9 +8,8 @@ class AddDiarySection {
 		cy.contains('Create').click({ force: true })
 	}
 
-	static fillUpTheEventInfo(title, description) {
+	static fillUpTheEventInfo(title) {
 		cy.get(TITLE_BOX).type(title)
-		cy.get(DESCRIIPTION_BOX).type(description)
 	}
 	static checkColorLabels(color) {
 		cy.get('aside label span').should('contain', color)
@@ -26,10 +25,10 @@ class AddDiarySection {
 			force: true,
 		})
 	}
-	static addEventinDiary(dateOfscreening, eventType, description) {
+	static addEventinDiary(dateOfscreening, eventType) {
 		this.selectDateinMiniCalendar(dateOfscreening)
 		this.ClickCreate()
-		this.fillUpTheEventInfo(eventType, description)
+		this.fillUpTheEventInfo(eventType)
 		this.clickSave()
 	}
 	static viewtheAddedEvent(eventType) {

@@ -5,14 +5,16 @@ Feature: Removing a Diary Event
 
 
   Scenario: Remove Screening Event
-    When I see event of "Mudit Maheshwari" created on 10 August for "Screening Interview"
-    Then I remove event "Mudit Maheshwari"
+    When I see event of "Mudit Maheshwari" created on 10 August 
+    Then I remove event for "Mudit Maheshwari"
+    And I verify that "Mudit Maheshwari" event has been removed
     
   
   Scenario Outline: Remove the events
-    When I have <count> events created of "Final Interview Slot" on 28 August
-    When I remove event for time "<start time>"
+    When I have upto <count> events created for "Final Interview Slot" on 28 August
+    Then I remove event for "<start time>"
     Then I can see <eventsLeft> event is present
+    And I verify that "Final Interview Slot <start time>" event has been removed
     Examples:
       | start time | count | eventsLeft |
       | 1:00PM BST | 3 | 2 |

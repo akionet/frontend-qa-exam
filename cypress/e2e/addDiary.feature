@@ -8,7 +8,7 @@ Feature: Adding a Diary Event
     And I am logged in as a valid user
 
   Scenario: Add a Single Diary Event
-    When I add single diary events named "Mudit Maheshwari" "Screening Interview" DONE on the 10 August
+    When I add single diary events named "Mudit Maheshwari Screening Interview DONE" on the 10 August
     Then The diary event "Mudit Maheshwari" should be visible on the main page
     And The diary event "Mudit Maheshwari" should have "indigo" color
 

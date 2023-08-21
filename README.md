@@ -100,3 +100,6 @@ In the second terminal, FOR
 
 ### 9. To run in any other browser
 `npx cypress run --browser=<browsername>`
+
+### 10. For executing Single Feature
+`npx cypress run --spec=<path to feature file>`
