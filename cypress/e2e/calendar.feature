@@ -1,10 +1,12 @@
 Feature: Verify the Calendar functionality
 
+    Background:
+        Given Casie is on the Calendar page
+
     #    As an unauthenticated user, Casie want to be able to click through the months of the year,
     #   so that she can view all the days of the month.
 
     Scenario: Browse through all the months present in the year 2023
-        Given Casie is on the Calendar page
         When she traverses back to the first month of the year 2023
         Then she should see respective number of days for each month while traversing
             | month     | noOfDays |
@@ -25,7 +27,6 @@ Feature: Verify the Calendar functionality
     #so that I can keep track of my appointments.
 
     Scenario: Adding a diary event for the Screening Round & 3 diary events for Final Interview Slots
-        Given Casie is on the Calendar page
         When she books the below diary event for the given date
             | name                                     | date | labelColor |
             | Komal Hukmatani Screening Interview DONE | 11   | GREEN      |
@@ -44,7 +45,6 @@ Feature: Verify the Calendar functionality
     #   so that I can remove a diary event that is no longer required.
 
     Scenario: Removing two Final Interview Slots that are no longer required
-        Given Casie is on the Calendar page
         And she books the below diary event for the given date
             | name                               | date | labelColor |
             | Final Interview Slot 14:00 - 15:00 | 22   | RED        |
