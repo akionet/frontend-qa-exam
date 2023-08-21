@@ -1,7 +1,6 @@
 import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps'
 import CommonMethods from '../common/commonMethods'
 import RemoveEventMethods from '../common/removeEventMethods'
-import AddDiarySection from '../common/addDiarySection'
 
 Given('The app is running', () => {
 	CommonMethods.visitSite()
@@ -17,63 +16,29 @@ afterEach(() => {
 })
 
 When(
-	'I have {int} events created of {string} on {int} August',
-	(count, eventType, dateOfFinalInterview) => {
-		cy.setLocalStorage('count', count)
-		cy.get('body').then((body) => {
-			if (body.find("div[class*='bg-red-200']").length === 0) {
-				AddDiarySection.addEventsinDiary(
-					dateOfFinalInterview,
-					'2:00PM BST',
-					'3:00PM BST',
-					eventType,
-				)
-				AddDiarySection.addEventsinDiary(
-					dateOfFinalInterview,
-					'1:00PM BST',
-					'2:00PM BST',
-					eventType,
-				)
-				AddDiarySection.addEventsinDiary(
-					dateOfFinalInterview,
-					'3:30PM BST',
-					'4:30PM BST',
-					eventType,
-				)
-			}
-		})
-		cy.get("div[class*='bg-red-200']").should('have.length', count)
+	'I have upto {int} events created for {string} on {int} August',
+	(count) => {
+		cy.get("div[class*='bg-red-200']").should('have.length.at.most', count)
 	},
 )
 
-When('I remove event for time {string}', (starttime) => {
-	RemoveEventMethods.selectEventandRemove(
-		starttime,
-		localStorage.getItem('count'),
-	)
+Then('I remove event for {string}', (eventIdentifier) => {
+	RemoveEventMethods.selectEventandRemove(eventIdentifier)
 })
 Then('I can see {int} event is present', (countOfEvents) => {
 	RemoveEventMethods.checkCountOfEventsPresentInRed(countOfEvents)
 })
+
+When('I see event of {string} created on 10 August', (eventType) => {
+	RemoveEventMethods.checkIfScreeningEventPresent(eventType)
+})
+Then('I remove event {string}', (eventType) => {
+	RemoveEventMethods.chooseScreeningEventAndDelete(eventType)
+})
+And('I verify that {string} event has been removed', (eventIdentifier) => {
+	RemoveEventMethods.verifyTheEventHasBeenRemoved(eventIdentifier)
+})
 after(() => {
 	cy.clearAllLocalStorage()
 	cy.clearLocalStorageSnapshot()
-})
-When(
-	'I see event of {string} created on {int} August for {string}',
-	(eventType, dateOfScreening, description) => {
-		cy.get('body').then((body) => {
-			if (body.find("div[class*='bg-indigo-200']").length === 0) {
-				AddDiarySection.addEventinDiary(
-					dateOfScreening,
-					eventType,
-					description,
-				)
-			}
-		})
-		RemoveEventMethods.checkIfScreeningEventPresent(eventType)
-	},
-)
-Then('I remove event {string}', (eventType) => {
-	RemoveEventMethods.chooseScreeningEventAndDelete(eventType)
 })

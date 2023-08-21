@@ -10,5 +10,5 @@ When('I open the Calendar app', () => {
 	CommonMethods.visitSite()
 })
 Then('The heading {string} is visible', (newheader) => {
-	cy.get('header').contains(newheader)
+	cy.get('header').contains(newheader).should('be.visible')
 })

@@ -7,9 +7,12 @@ import {
 } from '../helpers/constants'
 
 before(() => {
-	cy.clearAllLocalStorage()
 	cy.clearLocalStorageSnapshot()
-	cy.removeLocalStorage('savedEvents')
+	cy.clearLocalStorage("savedEvents")
+})
+
+beforeEach(() => {
+	cy.restoreLocalStorage('savedEvents')
 })
 Given('The app is running', () => {
 	CommonMethods.visitSite()
@@ -17,19 +20,15 @@ Given('The app is running', () => {
 And('I am logged in as a valid user', () => {
 	cy.restoreLocalStorage('savedEvents')
 })
-beforeEach(() => {
-	cy.restoreLocalStorage('savedEvents')
-})
 afterEach(() => {
 	cy.saveLocalStorage('savedEvents')
 })
 When(
-	'I add single diary events named {string} {string} DONE on the {int} August',
-	(eventIdentifier, eventDescription, dateOfscreening) => {
+	'I add single diary events named {string} on the {int} August',
+	(eventIdentifier,dateOfscreening) => {
 		AddDiarySection.addEventinDiary(
 			dateOfscreening,
-			eventIdentifier,
-			eventDescription,
+			eventIdentifier
 		)
 	},
 )
