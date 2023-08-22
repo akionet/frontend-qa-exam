@@ -62,32 +62,44 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Test Execution Instructions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Note: The test code has been integrated with the app code itself. The app needs to be executed first
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1. Clone/Fork the repository 
 
-### Code Splitting
+### Testing scripts
+In the project directory ,execute the below commands
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### 2. `npm install --save-dev` 
+This would install all the dependencies needed for both executing the app as well as the dependencies needed for cypress test execution
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 3. `Follow the instructions stated above for executing the app`
 
-### Making a Progressive Web App
+### 4. Note for windows machines 
+```Use set NODE_OPTIONS=--openssl-legacy-provider in the start script of package.json ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### For MAC/Linux Machines
+``` Use export NODE_OPTIONS=--openssl-legacy-provider in the start script of package.json```
+### 5. Install cypress 
 
-### Advanced Configuration
+### `npm install cypress@12.14.0 --save-dev`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 6. Using the scripts defined in package.json to execute the tests
+### FOR RUNNING THE TESTS:
+Keep the app open in 1 terminal
+` npm run start `
 
-### Deployment
+In the second terminal, FOR
+### 7. Headless execution in chrome browser
+#### `npm run e2e:test` 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 8. Headed execution in chrome browser
+### `npm run e2e:test:headed`
 
-### `yarn build` fails to minify
+### 9. To run in any other browser
+`npx cypress run --browser=<browsername>`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 10. For executing Single Feature
+`npx cypress run --spec=<path to feature file>`
